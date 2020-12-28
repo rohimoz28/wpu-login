@@ -29,7 +29,7 @@
 							<th scope="row"><?= $i; ?></th>
 							<td><?= $m['menu']; ?></td>
 							<td>
-								<a href="" class="badge badge-pill badge-success">Edit</a>
+								<a href="<?= base_url(); ?>menu/edit/<?= $m['id']; ?>" class="badge badge-pill badge-success">Edit</a>
 								<a href="<?= base_url(); ?>menu/delete/<?= $m['id']; ?>" class="badge badge-pill badge-danger" onclick="return confirm('yakin?');">Delete</a>
 							</td>
 						</tr>
