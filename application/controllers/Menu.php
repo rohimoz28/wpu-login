@@ -8,6 +8,8 @@ class Menu extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model('Menu_model');
+
+		is_logged_in();
 	}
 	public function index()
 	{
@@ -89,7 +91,7 @@ class Menu extends CI_Controller
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
 			$this->load->view('templates/topbar', $data);
-			$this->load->view('menu/edit', $data);
+			$this->load->view('menu/edit_menu', $data);
 			$this->load->view('templates/footer');
 		} else {
 			$this->Menu_model->updateMenu();
