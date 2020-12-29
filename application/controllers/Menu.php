@@ -6,6 +6,7 @@ class Menu extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('form_validation');
 		$this->load->model('Menu_model');
 	}
 	public function index()
@@ -35,7 +36,7 @@ class Menu extends CI_Controller
 		/* $this */
 	}
 
-	public function delete($id)
+	public function deleteMenu($id)
 	{
 		$this->Menu_model->deleteMenu($id);
 		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Menu has been deleted!</div>');
@@ -73,6 +74,28 @@ class Menu extends CI_Controller
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
   New Submenu added!</div>');
 			redirect('menu/submenu');
+		}
+	}
+
+	public function editMenu($id)
+	{
+		$data['title'] = 'Edit Menu';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['menu'] = $this->Menu_model->getMenuById($id);
+		/* $data['menu'] = $this->db->get('user_menu')->row_array(); */
+		$this->form_validation->set_rules('menu', 'Menu', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('menu/edit', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$this->Menu_model->updateMenu();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+  New Menu Updated!</div>');
+			redirect('menu');
 		}
 	}
 }

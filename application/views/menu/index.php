@@ -29,8 +29,8 @@
 							<th scope="row"><?= $i; ?></th>
 							<td><?= $m['menu']; ?></td>
 							<td>
-								<a href="<?= base_url(); ?>menu/edit/<?= $m['id']; ?>" class="badge badge-pill badge-success">Edit</a>
-								<a href="<?= base_url(); ?>menu/delete/<?= $m['id']; ?>" class="badge badge-pill badge-danger" onclick="return confirm('yakin?');">Delete</a>
+								<a href="<?= base_url(); ?>menu/editMenu/<?= $m['id']; ?>" class="badge badge-pill badge-success">Edit</a>
+								<a href="<?= base_url(); ?>menu/deleteMenu/<?= $m['id']; ?>" class="badge badge-pill badge-danger" onclick="return confirm('yakin?');">Delete</a>
 							</td>
 						</tr>
 						<?php $i++; ?>
